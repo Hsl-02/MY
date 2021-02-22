@@ -4,6 +4,7 @@ import index from '@/page/index.vue'
 import position from '@/page/position.vue'
 import invitation from '@/page/invitation.vue'
 import goodsClassification from '@/page/goodsClassification.vue'
+import goodsDetails from '@/page/goodsDetails.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
 			path:'/goodsClassification',
 			name:'goodsClassification',
 			component:goodsClassification
+		},
+		{
+			path:'/goodsDetails',
+			name:'goodsDetails',
+			component:goodsDetails
 		}
 	]
 })

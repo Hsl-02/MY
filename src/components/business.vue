@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ul>
-			<li v-for="owner in businessFirst" :key='owner.id' class="shopLi">
+			<li v-for="owner in businessFirst" :key='owner.id' class="shopLi" @click="jumpGoodsDetails(owner.id)">
 				<img :src="owner.img" class="shopImg" />
 				<div class="shopDetails">
 					<div class="shopDetailsName">{{owner.name}}</div>
@@ -46,7 +46,7 @@
 				flag2: false
 			}
 		},
-		created: function() {
+		created() {
 			axios.get('businessIndex.json')
 				.then(response => {
 					this.business = response.data
@@ -108,6 +108,11 @@
 				}
 			}
 		},
+		methods:{
+			jumpGoodsDetails(id){
+				this.$router.push(`/goodsDetails?id=${id}`)
+			}
+		}
 	}
 </script>
 
