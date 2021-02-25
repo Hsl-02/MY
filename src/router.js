@@ -5,6 +5,7 @@ import position from '@/page/position.vue'
 import invitation from '@/page/invitation.vue'
 import goodsClassification from '@/page/goodsClassification.vue'
 import goodsDetails from '@/page/goodsDetails.vue'
+import complaint from '@/page/complaint.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
 			path:'/goodsDetails',
 			name:'goodsDetails',
 			component:goodsDetails
+		},
+		{
+			path:'/complaint',
+			name:'complaint',
+			component:complaint
 		}
 	]
 })

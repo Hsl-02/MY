@@ -14,7 +14,7 @@
 						<img src="../assets/index/redu.png"/>
 						<div>热度 44</div>
 					</div>
-					<div class="complaint">
+					<div class="complaint" @click="jumpComplaint">
 						<img src="../assets/goodsDetails/tousu.png"/>
 						<div>投诉</div>
 					</div>
@@ -130,6 +130,11 @@
 					alert('网络错误，不能访问')
 				})
 
+		},
+		methods:{
+			jumpComplaint(){
+				this.$router.push(`/complaint?id=${this.$route.query.id}`)
+			}
 		}
 	}
 </script>
