@@ -34,5 +34,6 @@
 	.btn{
 		border-radius: 0.5rem;
 		text-align: center;
+		margin: auto;
 	}
 </style>

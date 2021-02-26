@@ -22,13 +22,22 @@
 				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
 			</div>
 			<input type="text" class="telephone"/>
+			<div class="type">
+				<div class="typeFont">详细描述</div>
+				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
+			</div>
+			<textarea class="detailed" placeholder="请输入详细内容"></textarea>
 		</div>
+		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class='bigBtn'></bigButton>
+		<Option></Option>
 	</div>
 </template>
 
 <script>
 	import axios from 'axios';
 	import headJump from '../components/headJump.vue'
+	import bigButton from '../components/bigButton.vue'
+	import Option from '../components/option.vue'
 	
 	export default{
 		data(){
@@ -36,11 +45,17 @@
 				isMsg:'投诉',
 				business:[],
 				businessImg:'',
-				businessName:''
+				businessName:'',
+				isContent:'提交',
+				isPassWidth:650,
+				isPassHeight:97,
+				isColor:'linear-gradient(173deg, #EF3729 0%, #4DBBFA 0%, #FF7157 0%, #FF1818 100%)'
 			}
 		},
 		components:{
-			headJump
+			headJump,
+			bigButton,
+			Option
 		},
 		created() {
 			this.$route.query.id
@@ -117,12 +132,30 @@
 		top: 0.2rem;
 	}
 	.telephone{
-		width: 6.5rem;
+		width: 6.25rem;
 		height: 0.88rem;
 		margin: 0 auto;
 		border: 0.01rem solid rgba(0,0,0,0.16);
 		font-size: 0.32rem;
 		color: #333;
 		padding-left: 0.25rem;
+		outline: none;
+	}
+	.detailed{
+		display: block;
+		width: 6.1rem;
+		height: 2.23rem;
+		margin: 0 auto 0.99rem;
+		padding: 0.17rem 0.2rem;
+		border: 0.01rem solid rgba(0,0,0,0.16);
+		resize:none;
+		font-size: 0.24rem;
+		outline: none;
+	}
+	.bigBtn{
+		font-size: 0.36rem;
+		color: #fff;
+		font-weight: 500;
+		line-height: 0.97rem;
 	}
 </style>
