@@ -1,15 +1,11 @@
 <template>
 	<div class="box" v-show="state">
-		<div class="shadow"></div>
+		<div class="shadow" @click="toState"></div>
 		<div class="option">
 			<p class="optionTitle">请选择您的投诉类型</p>
 			<ul>
-				<li v-for="(item,index) in reason" :key='index'>{{item}}</li>
+				<li v-for="(item,index) in reason" :key='index' @click="select(item)">{{item}}</li>
 			</ul>
-			<div class="btn">
-				<div class="btnTrue">确定</div>
-				<div class="btnFalse">取消</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -19,12 +15,22 @@
 		data(){
 			return {
 				reason:['环境、服务差','商家信息有误','违规违法','其他'],
+				
 			}
 		},
 		props:{
 			state:{
 				type:Boolean,
 				default:false
+			}
+		},
+		methods:{
+			toState(){
+				this.$emit('toIsState')
+			},
+			select(item){
+				this.$emit('toItem',item)
+				this.toState()
 			}
 		}
 	}

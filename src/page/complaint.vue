@@ -13,7 +13,8 @@
 				<div class="typeFont">投诉类型</div>
 				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
 			</div>
-			<div class="typeChoice">
+			<div @click="getState" class="typeChoice">
+				<input type="text" v-model="isItem"/>
 				<img src="../assets/complaint/xiajiantou.png"/>
 			</div>
 			<div class="type">
@@ -21,7 +22,10 @@
 				<div class="typeFont">您的联系电话</div>
 				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
 			</div>
-			<input type="text" class="telephone"/>
+			<div class="telephone">
+				<input type="text" v-model="isTelephone" @input="judge($event)"/>
+				<img src="../assets/complaint/shanchu.png" v-show="empty"/>
+			</div>
 			<div class="type">
 				<div class="typeFont">详细描述</div>
 				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
@@ -29,7 +33,7 @@
 			<textarea class="detailed" placeholder="请输入详细内容"></textarea>
 		</div>
 		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class='bigBtn'></bigButton>
-		<Option></Option>
+		<Option :state='isState' @toIsState='getIsState' @toItem='getItem'></Option>
 	</div>
 </template>
 
@@ -49,7 +53,11 @@
 				isContent:'提交',
 				isPassWidth:650,
 				isPassHeight:97,
-				isColor:'linear-gradient(173deg, #EF3729 0%, #4DBBFA 0%, #FF7157 0%, #FF1818 100%)'
+				isColor:'linear-gradient(173deg, #EF3729 0%, #4DBBFA 0%, #FF7157 0%, #FF1818 100%)',
+				isState:false,
+				isItem:'',
+				isTelephone:'',
+				empty:false
 			}
 		},
 		components:{
@@ -69,6 +77,24 @@
 						}
 					})
 				})
+		},
+		methods:{
+			getState(){
+				this.isState = true
+			},
+			getIsState(){
+				this.isState = false
+			},
+			getItem(e){
+				this.isItem = e
+			},
+			judge(event){
+				if(event.target.value){
+					this.empty = true
+				}else{
+					this.empty = false
+				}
+			}
 		}
 	}
 </script>
@@ -118,20 +144,28 @@
 		font-weight: 500;
 	}
 	.typeChoice{
-		width: 6.5rem;
+		position: relative;
+	}
+	.typeChoice input{
+		width: 6.25rem;
 		height: 0.88rem;
 		border: 0.01rem solid rgba(0,0,0,0.16);
 		margin: 0 auto;
-		position: relative;
+		outline: none;
+		padding-left: 0.25rem;
+		font-size: 0.32rem;
 	}
 	.typeChoice img{
 		width: 0.48rem;
 		height: 0.44rem;
 		position: absolute;
-		right: 0.2rem;
-		top: 0.2rem;
+		right: 0.55rem;
+		top: 0.27rem;
 	}
 	.telephone{
+		position: relative;
+	}
+	.telephone input{
 		width: 6.25rem;
 		height: 0.88rem;
 		margin: 0 auto;
@@ -140,6 +174,14 @@
 		color: #333;
 		padding-left: 0.25rem;
 		outline: none;
+	}
+	.telephone img{
+		width: 0.32rem;
+		height: 0.32rem;
+		opacity: 0.2;
+		position: absolute;
+		right: 0.65rem;
+		top: 0.27rem;
 	}
 	.detailed{
 		display: block;
