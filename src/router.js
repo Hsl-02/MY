@@ -6,6 +6,7 @@ import invitation from '@/page/invitation.vue'
 import goodsClassification from '@/page/goodsClassification.vue'
 import goodsDetails from '@/page/goodsDetails.vue'
 import complaint from '@/page/complaint.vue'
+import search from '@/page/search.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
 			path:'/complaint',
 			name:'complaint',
 			component:complaint
-		}
+		},
+		{
+			path:'/search',
+			name:'search',
+			component:search
+		},
 	]
 })

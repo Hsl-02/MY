@@ -3,7 +3,7 @@
 		<div class="top">
 			<div class="topBox">
 				<img src="../assets/index/ccdf01a4d2be29ed8425862efbcda2e.png" class="topBoxLogo" />
-				<search :passWidth='isWidth' :passHeight='isHeight' :msg='isMsg' :passPaddingLeft='isPassPaddingLeft' class="search"></search>
+				<search :passWidth='isWidth' :passHeight='isHeight' :msg='isMsg' :passPaddingLeft='isPassPaddingLeft' class="search" @toJump='toJump'></search>
 			</div>
 			<div class="position" @click="jumpPosition">
 				<img src="../assets/index/dibiao.png" class="positionImg" />
@@ -49,7 +49,7 @@
 					require('../assets/index/indexSwiperC.png')
 				],
 				shouyePass:false,
-				place:'雨花区运达中心广场'
+				place:'雨花区运达中心广场',
 			}
 		},
 		components: {
@@ -65,6 +65,9 @@
 			},
 			jumpInvitation(){
 				this.$router.push(`/invitation`)
+			},
+			toJump(){
+				this.$router.push(`/search`)
 			}
 		}
 

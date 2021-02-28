@@ -24,15 +24,15 @@
 			</div>
 			<div class="telephone">
 				<input type="text" v-model="isTelephone" @input="judge($event)"/>
-				<img src="../assets/complaint/shanchu.png" v-show="empty"/>
+				<img src="../assets/complaint/shanchu.png" v-show="empty" @click="clear"/>
 			</div>
 			<div class="type">
 				<div class="typeFont">详细描述</div>
 				<div class="typeRemarks">(仅美鸦工作人员可见)</div>
 			</div>
-			<textarea class="detailed" placeholder="请输入详细内容"></textarea>
+			<textarea class="detailed" placeholder="请输入详细内容" v-model="isTextarea"></textarea>
 		</div>
-		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class='bigBtn'></bigButton>
+		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class='bigBtn' @toSubmit='getSubmit'></bigButton>
 		<Option :state='isState' @toIsState='getIsState' @toItem='getItem'></Option>
 	</div>
 </template>
@@ -57,7 +57,8 @@
 				isState:false,
 				isItem:'',
 				isTelephone:'',
-				empty:false
+				empty:false,
+				isTextarea:''
 			}
 		},
 		components:{
@@ -94,6 +95,22 @@
 				}else{
 					this.empty = false
 				}
+			},
+			getSubmit(){
+				if(this.isItem == ''){
+					alert('请选择投诉类型')
+				}else if(this.isTelephone == ''){
+					alert('请输入您的电话')
+				}else if(this.isTextarea == ''){
+					alert('请您详细描述一下')
+				}else{
+					alert('谢谢您的建议')
+					this.$router.push(`/`)
+				}
+			},
+			clear(){
+				this.isTelephone = '',
+				this.empty = false
 			}
 		}
 	}

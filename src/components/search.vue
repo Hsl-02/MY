@@ -1,5 +1,5 @@
 <template>
-	<div class="inpt" :style="{width:passWidth/100+'rem',height:passHeight/100+'rem',paddingLeft:passPaddingLeft/100+'rem'}">
+	<div class="inpt" :style="{width:passWidth/100+'rem',height:passHeight/100+'rem',paddingLeft:passPaddingLeft/100+'rem'}" @click="jump">
 		<img src="../assets/index/sousuo.png" class="boxImg" />
 		<input type="text" :placeholder="msg" class="boxInpt" @click="ipt" @blur="blur" v-model="val" :style="{width:passWidth/100 - passPaddingLeft/100 - 0.3 +'rem'}"/>
 	</div>
@@ -17,6 +17,10 @@
 				type: String,
 				default: ''
 			},
+			cancel: {
+				type: Boolean,
+				default: false
+			},
 			passWidth: {
 				type: Number,
 				default: 0
@@ -30,6 +34,14 @@
 				default: 0
 			}
 		},
+		watch:{
+			cancel(newval){
+				if(newval){
+					this.val = ''
+				}
+				this.$emit('toCancel')
+			}
+		},
 		methods:{
 			ipt(){
 				this.$emit('toInpt')
@@ -38,6 +50,9 @@
 				if(!this.val){
 					this.$emit('toBlur')
 				}
+			},
+			jump(){
+				this.$emit('toJump')
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-	<div class="btn" :style="{width:passWidth/100+'rem',height:passHeight/100+'rem',background:color}">{{content}}</div>
+	<div class="btn" :style="{width:passWidth/100+'rem',height:passHeight/100+'rem',background:color}" @click="submit">{{content}}</div>
 </template>
 
 <script>
@@ -25,6 +25,11 @@
 			color: {
 				type: String,
 				default: 'red'
+			}
+		},
+		methods:{
+			submit(){
+				this.$emit('toSubmit')
 			}
 		}
 	}
