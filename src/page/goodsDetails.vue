@@ -70,7 +70,7 @@
 			<div class="introduceTitle">商家说明</div>
 			<div class="introduceFont">此处是商家说明，此处是商家说明，此处是商家说明， 此处是商家说明说明说明，此处是商家说明，此处是 商家说明，此处是商家说明，此处是商家说明说明说明， 此处是商家说明，此处是 商家说明，此处是商家说明，</div>
 		</div>
-		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class="btn"></bigButton>
+		<bigButton :content='isContent' :passWidth='isPassWidth' :passHeight='isPassHeight' :color='isColor' class="btn" @toSubmit='getSubmit'></bigButton>
 	</div>
 </template>
 
@@ -134,6 +134,9 @@
 		methods:{
 			jumpComplaint(){
 				this.$router.push(`/complaint?id=${this.$route.query.id}`)
+			},
+			getSubmit(){
+				this.$router.push(`/payment?id=${this.$route.query.id}`)
 			}
 		}
 	}

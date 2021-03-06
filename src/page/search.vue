@@ -2,13 +2,13 @@
 	<div>
 		<headJump :msg='isMsg'></headJump>
 		<div class="inpt">
-			<search :cancel='isE' :msg="isVal" :passWidth='isWidth' :passHeight='isHeight' :passPaddingLeft='isPaddingLeft' class="search" @toCancel='getCancel'></search>
+			<search :cancel='isE' :msg="isVal" :passWidth='isWidth' :passHeight='isHeight' :passPaddingLeft='isPaddingLeft' class="search" @toCancel='getCancel' @enterInput='getEnter'></search>
 			<div class="inptFont" @click="clear">取消</div>
 		</div>
 		<div class="nearby">
 			<div class="nearbyTitle">附近的店</div>
 			<ul class="example">
-				<li v-for="(item,index) in business" :key='index' class="exampleLi" @click="see(index)">{{item}}</li>
+				<li v-for="(item,index) in business" :key='index' class="exampleLi" @click="record(index)">{{item}}</li>
 			</ul>
 		</div>
 		<div class="history">
@@ -17,7 +17,7 @@
 				<img src="../assets/complaint/qingkonglishi.png" class="historyTitleImg"/>
 			</div>
 			<ul class="example">
-				<li v-for="(hisItem,hisIndex) in historyBusiness" :key='hisIndex' class="exampleLi">{{hisItem}}</li>
+				<li class="exampleLi" v-for="(historyItem,historyIndex) in historyLi" :key='historyIndex'>{{historyItem}}</li>
 			</ul>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 				isPaddingLeft:48,
 				isE:false,
 				business:['海底捞火锅','吉布斯海鲜牛排自助餐','良品铺子','华莱士','吉布斯海鲜牛排自助餐','海底捞火锅','吉布斯海鲜牛排自助餐'],
-				historyBusiness:[]
+				historyLi:[],
 			}
 		},
 		components:{
@@ -45,19 +45,39 @@
 			search
 		},
 		methods:{
+			getHistoryList(){
+				let arr = localStorage.getItem('history')
+				arr = JSON.parse(arr)
+				this.historyLi = arr
+			},
 			clear(){
 				this.isE = ''
 			},
 			getCancel(){
 				this.isE = false
 			},
-			see(i){
-				this.business.forEach(nitem=>{
-					// console.log(item)
-					console.log(i)
-					console.log(item[i])
-				})
+			record(index){
+				console.log(index)
+			},
+			getEnter(e){
+				let historyList = []
+				historyList = JSON.stringify(historyList)
+				localStorage.setItem('history',historyList)
+				let old = localStorage.getItem('history')
+				if(old){
+					old = JSON.parse(old)
+					old.push(e)
+					old = JSON.stringify(old)
+					console.log(old)
+					localStorage.getItem('history',old)
+				}else{
+					old = []
+				}
 			}
+		},
+		created() {
+			this.getHistoryList()
+			
 		}
 	}
 </script>

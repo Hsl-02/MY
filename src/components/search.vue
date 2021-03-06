@@ -1,7 +1,7 @@
 <template>
 	<div class="inpt" :style="{width:passWidth/100+'rem',height:passHeight/100+'rem',paddingLeft:passPaddingLeft/100+'rem'}" @click="jump">
 		<img src="../assets/index/sousuo.png" class="boxImg" />
-		<input type="text" :placeholder="msg" class="boxInpt" @click="ipt" @blur="blur" v-model="val" :style="{width:passWidth/100 - passPaddingLeft/100 - 0.3 +'rem'}"/>
+		<input @keydown="calAge($event)" type="text" :placeholder="msg" class="boxInpt" @click="ipt" @blur="blur" v-model="val" :style="{width:passWidth/100 - passPaddingLeft/100 - 0.3 +'rem'}"/>
 	</div>
 </template>
 
@@ -43,6 +43,14 @@
 			}
 		},
 		methods:{
+			calAge(e){
+				let evt = window.event || e;
+				if (evt.keyCode == 13) {
+					//回车后要干的业务代码
+					// console.log(this.val);
+					this.$emit('enterInput',this.val)
+				}
+			},
 			ipt(){
 				this.$emit('toInpt')
 			},

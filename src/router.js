@@ -7,6 +7,7 @@ import goodsClassification from '@/page/goodsClassification.vue'
 import goodsDetails from '@/page/goodsDetails.vue'
 import complaint from '@/page/complaint.vue'
 import search from '@/page/search.vue'
+import payment from '@/page/payment.vue'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
 			path:'/search',
 			name:'search',
 			component:search
+		},
+		{
+			path:'/payment',
+			name:'payment',
+			component:payment
 		},
 	]
 })
