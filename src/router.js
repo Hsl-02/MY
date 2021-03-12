@@ -9,6 +9,7 @@ import complaint from '@/page/complaint.vue'
 import search from '@/page/search.vue'
 import payment from '@/page/payment.vue'
 import paySuccess from '@/page/paySuccess.vue'
+import account from '@/page/account.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
 			path:'/paySuccess',
 			name:'paySuccess',
 			component:paySuccess
+		},
+		{
+			path:'/account',
+			name:'account',
+			component:account
 		},
 	]
 })

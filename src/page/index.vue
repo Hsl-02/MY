@@ -25,7 +25,7 @@
 			<business></business>
 		</div>
 		<img src="../assets/index/zhuanqian.png" class="fixedImg" @click="jumpInvitation"/>
-		<navigation :shouye='shouyePass'></navigation>
+		<navigation :shouye='shouyePass' @jumpAccount='jumpAccount'></navigation>
 	</div>
 </template>
 
@@ -68,6 +68,9 @@
 			},
 			toJump(){
 				this.$router.push(`/search`)
+			},
+			jumpAccount(){
+				this.$router.push(`/account`)
 			}
 		}
 

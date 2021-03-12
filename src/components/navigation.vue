@@ -2,7 +2,7 @@
 	<div class="box">
 		<div class="line"></div>
 		<ul>
-			<li v-if='shouye'>
+			<li v-if='shouye' @click="$emit('jumpIndex')">
 				<img src="../assets/icon_rblt8syta4/shouye.png"/>
 				<div>首页</div>
 			</li>
@@ -10,7 +10,7 @@
 				<img src="../assets/icon_rblt8syta4/shouyePass.png"/>
 				<div style="color: red;">首页</div>
 			</li>
-			<li v-if='ditu'>
+			<li v-if='ditu' @click="$emit('jumpMap')">
 				<img src="../assets/icon_rblt8syta4/ditu.png"/>
 				<div>地图</div>
 			</li>
@@ -18,7 +18,7 @@
 				<img src="../assets/icon_rblt8syta4/dituPass.png"/>
 				<div style="color: red;">地图</div>
 			</li>
-			<li v-if='jinbi'>
+			<li v-if='jinbi' @click="$emit('jumpShop')">
 				<img src="../assets/icon_rblt8syta4/jinbi.png"/>
 				<div>金币商城</div>
 			</li>
@@ -26,7 +26,7 @@
 				<img src="../assets/icon_rblt8syta4/jinbiPass.png"/>
 				<div style="color: red;">金币商城</div>
 			</li>
-			<li v-if='zhangben'>
+			<li v-if='zhangben' @click="$emit('jumpAccount')">
 				<img src="../assets/icon_rblt8syta4/zhangben.png"/>
 				<div>账本</div>
 			</li>
@@ -34,7 +34,7 @@
 				<img src="../assets/icon_rblt8syta4/zhangbenPass.png"/>
 				<div style="color: red;">账本</div>
 			</li>
-			<li v-if='wode'>
+			<li v-if='wode' @click="$emit('jumpUser')">
 				<img src="../assets/icon_rblt8syta4/wode.png"/>
 				<div>我的</div>
 			</li>

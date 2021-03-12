@@ -74,11 +74,13 @@
 			firstOut(){
 				this.firstHide = false
 				this.firstOtherHide = false
+				this.$router.push(`/account?id=${this.$route.query.id}`)
 			},
 			secondOut(){
 				this.secondHide = false
 				this.firstOtherHide = false
 				this.secondMsgA='恭喜你获得免单返现30%'
+				this.$router.push(`/account?id=${this.$route.query.id}`)
 			},
 			getSecond(){
 				this.firstHide = false
@@ -171,7 +173,6 @@
 		border: 0.01rem solid rgba(0,0,0,0.4);
 		border-radius: 0.2rem;
 		padding: 0.2rem;
-		/* background-color: #A1FEFF; */
 	}
 	.btnReward{
 		font-size: 0.4rem;
