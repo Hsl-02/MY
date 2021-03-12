@@ -57,7 +57,11 @@
 				}, 500)
 			},
 			confirm(){
-				this.$emit('toConfirm')
+				this.flagShow = false
+				setTimeout(() => {
+					this.flagShow = true
+					this.$emit('toConfirm')
+				}, 500)
 			}
 		}
 	}

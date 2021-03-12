@@ -8,6 +8,7 @@ import goodsDetails from '@/page/goodsDetails.vue'
 import complaint from '@/page/complaint.vue'
 import search from '@/page/search.vue'
 import payment from '@/page/payment.vue'
+import paySuccess from '@/page/paySuccess.vue'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
 			path:'/payment',
 			name:'payment',
 			component:payment
+		},
+		{
+			path:'/paySuccess',
+			name:'paySuccess',
+			component:paySuccess
 		},
 	]
 })

@@ -103,7 +103,9 @@
 				agreementMsg:'请阅读并同意付款协议',
 				agreementFlag:false,
 				agreementShowAMsg:'同意',
-				agreementShowBMsg:'拒绝'
+				agreementShowBMsg:'拒绝',
+				pageState:'',
+				payTime:''
 			}
 		},
 		components: {
@@ -220,15 +222,57 @@
 			getSubmit() {
 				if (this.isMoney == null || this.isMoney == '' || this.isMoney == undefined) {
 					alert('请询问服务员后输入价格')
-				} else if (this.isFlag == false && this.isMoney >= 296) {
+				} else if (this.isFlag == false && this.isMoney >= 296 && this.die == 0) {
 					this.popupFlag = true
-					if (this.die == 1) {
-						this.popupFlag = false
-					}
 				} else if (this.appearImgYe == false && this.appearImg == false) {
 					this.modeFlag = true
 				}else if(this.appearDivXy == true){
 					this.agreementFlag = true
+				}else{
+					if(this.appearImg){
+						this.pageState = '微信支付'
+					}else if(this.appearImgYe){
+						this.pageState = '余额支付'
+					}
+					let day = new Date()
+					let month
+					let date
+					let hours
+					let minutes
+					let seconds
+					// 月
+					if((Number(day.getMonth())+1) < 10){
+						month = '0'+(Number(day.getMonth())+1)
+					}else{
+						month = (Number(day.getMonth())+1)
+					}
+					// 日
+					if(day.getDate() < 10){
+						date = '0'+day.getDate()
+					}else{
+						date = day.getDate()
+					}
+					// 时
+					if(day.getHours() < 10){
+						hours = '0'+day.getHours()
+					}else{
+						hours = day.getHours()
+					}
+					// 分
+					if(day.getMinutes() < 10){
+						minutes = '0'+day.getMinutes()
+					}else{
+						minutes = day.getMinutes()
+					}
+					// 秒
+					if(day.getSeconds() < 10){
+						seconds = '0'+day.getSeconds()
+					}else{
+						seconds = day.getSeconds()
+					}
+					
+					this.payTime = day.getFullYear()+'-'+month+'-'+date+' '+hours+':'+minutes+':'+seconds
+					this.$router.push(`/paySuccess?id=${this.$route.query.id}&money=${this.isContentOld}&state=${this.pageState}&time=${this.payTime}`)
 				}
 
 			},
